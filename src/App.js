@@ -42,27 +42,13 @@ function App() {
     }
   };
 
-  const onCheckout = () => {
-    if (tele && tele.MainButton) {
-      tele.MainButton.text = "Pay :)";
-      tele.MainButton.show();
-    } else {
-      console.error("Telegram MainButton is not defined");
-    }
-
-    const orderDetails = cartItems.map(item => `${item.title}: ${item.quantity}`).join(', ');
-    const total = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
-
-    tele.sendData(`Замовлення: ${orderDetails}. Загальна сума: ₴${total.toFixed(2)}`);
-  };
-
   return (
     <>
       <div className="logo-container">
         <img src={logo} alt="Logo" className="logo" />
       </div>
       <h1 className="heading">Замовити продукцію IFCEM</h1>
-      <Cart cartItems={cartItems} onCheckout={onCheckout} />
+      <Cart cartItems={cartItems} />
       <div className="cards__container">
         {cements.map((cement) => {
           return (
